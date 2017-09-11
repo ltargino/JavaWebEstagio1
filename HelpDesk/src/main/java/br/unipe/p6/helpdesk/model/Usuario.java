@@ -29,12 +29,11 @@ public class Usuario implements IModel{
 	protected List<Ticket> ticket;
 	
 	//constructor
-	public Usuario(String senha, String nome, String email, Long id) {
+	public Usuario(String senha, String nome, String email) {
 		super();
 		this.senha = senha;
 		this.nome = nome;
 		this.email = email;
-		this.id = id;
 	}
 	
 	//gets e sets

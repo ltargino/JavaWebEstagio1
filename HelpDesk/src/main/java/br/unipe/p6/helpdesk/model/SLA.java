@@ -14,9 +14,8 @@ public class SLA implements IModel{
 	private Long id;
 
 	//constructor
-	public SLA(Long id) {
+	public SLA() {
 		super();
-		this.id = id;
 	}
 
 	//Gets e Sets

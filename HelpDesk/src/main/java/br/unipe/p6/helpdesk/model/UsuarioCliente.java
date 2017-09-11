@@ -12,8 +12,8 @@ public class UsuarioCliente extends Usuario{
 	private Departamento departamento;
 	
 	//constructor
-	public UsuarioCliente(Departamento departamento, String senha, String nome, String email, Long id) {
-		super(senha, nome, email, id);
+	public UsuarioCliente(Departamento departamento, String senha, String nome, String email) {
+		super(senha, nome, email);
 		this.departamento = departamento;
 	}
 	

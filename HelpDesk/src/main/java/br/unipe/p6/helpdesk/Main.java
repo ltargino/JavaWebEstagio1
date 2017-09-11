@@ -1,24 +1,26 @@
 package br.unipe.p6.helpdesk;
 
-import java.util.ArrayList;
-
-import br.unipe.p6.helpdesk.controller.DepartamentoController;
 import br.unipe.p6.helpdesk.model.Departamento;
+import br.unipe.p6.helpdesk.model.Prioridade;
+import br.unipe.p6.helpdesk.model.Status;
+import br.unipe.p6.helpdesk.model.Ticket;
+import br.unipe.p6.helpdesk.model.Usuario;
 import br.unipe.p6.helpdesk.model.UsuarioCliente;
 
 public class Main {
 
 	public static void main(String[] args) {
 
-		Departamento departamento = new Departamento("Departamento A", "Descrição do Departamento A", new ArrayList<UsuarioCliente>());
-		Departamento departamento2 = new Departamento("Departamento B", "Descrição do Departamento B", new ArrayList<UsuarioCliente>());
+		//Baixo acoplamento
+		Departamento departamento = new Departamento("RH", "Recursos Humanos", null);
+		Usuario usuario = new UsuarioCliente(departamento, "123456", "Larissa", "l.targino@hotmail.com"); 
+
+		//Expert + Alta coesão
+		Ticket ticket = new Ticket("Problema na impressora", "A impressora não esta querendo imprimir", Prioridade.MEDIA, usuario, Status.ABERTO);
+		ticket.enviarEmail();
 		
-		DepartamentoController controller = new DepartamentoController();
-		
-		controller.salvar(departamento);
-		controller.salvar(departamento2);
-		
-		controller.deletar(departamento2);
+		//Creator
+		ticket.setPrioridade(Prioridade.ALTA);
 		
 	}
 

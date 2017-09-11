@@ -33,13 +33,12 @@ public class Ticket implements IModel{
 	private Usuario usuario;
 	
 	//constructor
-	public Ticket(String titulo, String descricao, /*List<File> arquivo,*/ Prioridade prioridade, Long id, Usuario usuario, Status status) {
+	public Ticket(String titulo, String descricao, /*List<File> arquivo,*/ Prioridade prioridade, Usuario usuario, Status status) {
 		super();
 		this.titulo = titulo;
 		this.descricao = descricao;
 		//this.arquivo = arquivo;
 		this.prioridade = prioridade;
-		this.id = id;
 		this.usuario = usuario;
 		this.status = status;
 	}
@@ -67,6 +66,7 @@ public class Ticket implements IModel{
 		return prioridade;
 	}
 	public void setPrioridade(Prioridade prioridade) {
+		SLA sla = new SLA();
 		this.prioridade = prioridade;
 	}
 	public Long getId() {
@@ -109,8 +109,8 @@ public class Ticket implements IModel{
 			System.out.println("\n\n 2nd ===> get Mail Session..");
 			getMailSession = Session.getDefaultInstance(mailServerProperties, null);
 			generateMailMessage = new MimeMessage(getMailSession);
-			generateMailMessage.addRecipient(Message.RecipientType.TO, new InternetAddress("targino.larissa@gmail.com"));
-			generateMailMessage.addRecipient(Message.RecipientType.CC, new InternetAddress("targino.larissa@gmail.com"));
+			generateMailMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(this.usuario.getEmail()));
+			generateMailMessage.addRecipient(Message.RecipientType.CC, new InternetAddress(this.usuario.getEmail()));
 			generateMailMessage.setSubject("Greetings from Crunchify..");
 			String emailBody = "Test email by Crunchify.com JavaMail API example. " + "<br><br> Regards, <br>Crunchify Admin";
 			generateMailMessage.setContent(emailBody, "text/html");
